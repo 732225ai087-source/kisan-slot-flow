@@ -156,3 +156,24 @@
     color: var(--color-foreground);
   }
 }
+
+@layer base {
+  html {
+    font-family: "Noto Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  h1, h2, h3 {
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility gov-hero {
+  background-image: var(--gradient-hero);
+}
+
+@utility soft-panel {
+  background-image: var(--gradient-soft);
+}
+
+@utility card-elevated {
+  box-shadow: var(--shadow-card);
+}
