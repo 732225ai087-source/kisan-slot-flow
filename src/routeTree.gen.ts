@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as FarmerAppointmentsRouteImport } from './routes/farmer.appointments'
 import { Route as FarmerDashboardRouteImport } from './routes/farmer.dashboard'
 import { Route as FarmerProductsRouteImport } from './routes/farmer.products'
 
@@ -30,6 +31,11 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FarmerAppointmentsRoute = FarmerAppointmentsRouteImport.update({
+  id: '/farmer/appointments',
+  path: '/farmer/appointments',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FarmerDashboardRoute = FarmerDashboardRouteImport.update({
   id: '/farmer/dashboard',
   path: '/farmer/dashboard',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/farmer/appointments': typeof FarmerAppointmentsRoute
   '/farmer/dashboard': typeof FarmerDashboardRoute
   '/farmer/products': typeof FarmerProductsRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/farmer/appointments': typeof FarmerAppointmentsRoute
   '/farmer/dashboard': typeof FarmerDashboardRoute
   '/farmer/products': typeof FarmerProductsRoute
 }
@@ -60,20 +68,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/farmer/appointments': typeof FarmerAppointmentsRoute
   '/farmer/dashboard': typeof FarmerDashboardRoute
   '/farmer/products': typeof FarmerProductsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/login' | '/register' | '/farmer/dashboard' | '/farmer/products'
+    | '/'
+    | '/login'
+    | '/register'
+    | '/farmer/appointments'
+    | '/farmer/dashboard'
+    | '/farmer/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/farmer/dashboard' | '/farmer/products'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/farmer/appointments'
+    | '/farmer/dashboard'
+    | '/farmer/products'
   id:
     | '__root__'
     | '/'
     | '/login'
     | '/register'
+    | '/farmer/appointments'
     | '/farmer/dashboard'
     | '/farmer/products'
   fileRoutesById: FileRoutesById
@@ -82,6 +103,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
+  FarmerAppointmentsRoute: typeof FarmerAppointmentsRoute
   FarmerDashboardRoute: typeof FarmerDashboardRoute
   FarmerProductsRoute: typeof FarmerProductsRoute
 }
@@ -109,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/farmer/appointments': {
+      id: '/farmer/appointments'
+      path: '/farmer/appointments'
+      fullPath: '/farmer/appointments'
+      preLoaderRoute: typeof FarmerAppointmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/farmer/dashboard': {
       id: '/farmer/dashboard'
       path: '/farmer/dashboard'
@@ -130,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
+  FarmerAppointmentsRoute: FarmerAppointmentsRoute,
   FarmerDashboardRoute: FarmerDashboardRoute,
   FarmerProductsRoute: FarmerProductsRoute,
 }
